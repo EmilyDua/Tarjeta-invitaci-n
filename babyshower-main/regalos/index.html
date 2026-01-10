@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lista de regalos</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 { text-align: center; color: #444; }
+  table {
+    width: 100%; border-collapse: collapse; background: white;
+    border-radius: 8px; overflow: hidden;
+  }
+  th, td { padding: 12px; text-align: left; }
+  th { background: #ffb6c1; color: #fff; font-weight: bold; }
+  tr:nth-child(even) { background: #f7f7f7; }
+  button {
+    padding: 6px 10px; border: none; border-radius: 5px;
+    cursor: pointer; color: white;
+  }
+  .btn-reservar { background: #4caf50; }
+  .btn-liberar { background: #f44336; }
+  textarea {
+    width: 100%; min-height: 50px; resize: vertical;
+    padding: 6px; border-radius: 5px; border: 1px solid #ccc;
+    font-family: inherit;
+  }
+  textarea[readonly] { background: #f0f0f0; color: #555; }
+
+  /* 🔔 Toasts */
+  .toast-container {
+    position: fixed; bottom: 20px; right: 20px;
+    display: flex; flex-direction: column; gap: 10px; z-index: 2000;
+  }
+  .toast {
+    background: #333; color: #fff; padding: 10px 16px;
+    border-radius: 8px; min-width: 200px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    opacity: 0; transform: translateY(20px);
+    animation: slideIn 0.3s forwards, fadeOut 0.3s 3s forwards;
+  }
+  .toast.success { background: #4caf50; }
+  .toast.error { background: #f44336; }
+  .toast.info { background: #ff9800; }
+  @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeOut { to { opacity: 0; transform: translateY(20px); } }
+
+  /* 🔄 Loading global pantalla completa */
+  #loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(3px);
+    z-index: 1500;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .loading-spinner {
+    width: 40px; height: 40px;
+    border: 4px solid #ccc;
+    border-top: 4px solid #ff69b4;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin { 100% { transform: rotate(360deg); } }
+  #loading-overlay p {
+    color: #555;
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    th, td { font-size: 14px; }
+    button { font-size: 13px; padding: 5px 8px; }
+  }
+
+  .btn-regalos {
+  display: inline-block;
+  background: grey;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  
+}
+
+.btn-regalos:hover { background: #b52d70; transform: scale(1.05); }
+</style>
+</head>
+<body>
+  <button class="btn-regalos" id="btnRegalos">Regresar a invitación</button>
+<h2>🎁 Lista de regalos</h2>
+<p>Aqui algunas opciones de regalos que puedes seleccionar</p>
+<p> </p>
+<!-- 🔄 Loading global -->
+<div id="loading-overlay">
+  <div class="loading-spinner"></div>
+  <p>Procesando, por favor espera...</p>
+</div>
+
+<table id="tablaRegalos">
+  <thead>
+    <tr>
+      <th>Regalo / Descripción</th>
+      <th>Estado</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbziW4ugHNR0q8w_LCev5dSkr3jJZCraREQGc0RC_xCaEtfgi8URvq1nnvwt-gSmDeS7/exec";
+const tabla = document.querySelector("#tablaRegalos tbody");
+const toastContainer = document.getElementById("toastContainer");
+const loadingOverlay = document.getElementById("loading-overlay");
+const btnRegalos = document.getElementById("btnRegalos");
+
+function showToast(message, type = "info") {
+  const toast = document.createElement("div");
+  toast.className = `toast ${type}`;
+  toast.textContent = message;
+  toastContainer.appendChild(toast);
+  setTimeout(() => toast.remove(), 3500);
+}
+
+function showLoading(show, message = "Procesando, por favor espera...") {
+  loadingOverlay.style.display = show ? "flex" : "none";
+  loadingOverlay.querySelector("p").textContent = message;
+}
+
+async function cargarRegalos() {
+  showLoading(true, "Cargando regalos...");
+  tabla.innerHTML = "";
+
+  try {
+    const res = await fetch(API_URL);
+    const data = await res.json();
+    renderTabla(data);
+  } catch (err) {
+    showToast("Error al cargar la lista", "error");
+  } finally {
+    showLoading(false);
+  }
+}
+
+function renderTabla(regalos) {
+  tabla.innerHTML = "";
+  regalos.forEach(r => {
+    const reservado = r.estado !== "Disponible";
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${r.regalo} ${r.descripcion || ""}</td>
+      <td>${reservado ? "🎁 Seleccionado" : "Disponible"}</td>
+      <td>
+        ${reservado
+          ? `<button class="btn-liberar" onclick="liberar(${r.id})">Liberar</button>`
+          : `<button class="btn-reservar" onclick="reservar(${r.id})">Seleccionar</button>`
+        }
+      </td>
+    `;
+    tabla.appendChild(tr);
+  });
+}
+
+
+async function reservar(id) {
+  showToast("Seleccionando regalo...", "info");
+  showLoading(true, "Procesando selección...");
+
+  try {
+    const res = await fetch(API_URL);
+    const data = await res.json();
+    const regalo = data.find(r => r.id == id);
+
+    if (!regalo) {
+      showToast("Regalo no encontrado.", "error");
+      return;
+    }
+
+    if (regalo.estado !== "Disponible") {
+      showToast("Este regalo ya fue seleccionado.", "error");
+      await cargarRegalos();
+      return;
+    }
+
+    await fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify({
+        id,
+        estado: "Tomado",
+        reservadoPor: "Seleccionado"
+      })
+    });
+
+    await cargarRegalos();
+    showToast("🎁 Regalo seleccionado con éxito.", "success");
+
+  } catch {
+    showToast("Error al seleccionar el regalo.", "error");
+  } finally {
+    showLoading(false);
+  }
+}
+
+
+async function liberar(id) {
+  if (!confirm("¿Deseas liberar este regalo?")) return;
+
+  showToast("Liberando regalo...", "info");
+  showLoading(true, "Liberando regalo...");
+
+  try {
+    await fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify({
+        id,
+        estado: "Disponible",
+        reservadoPor: ""
+      })
+    });
+
+    await cargarRegalos();
+    showToast("Regalo liberado correctamente.", "info");
+
+  } catch {
+    showToast("Error al liberar el regalo.", "error");
+  } finally {
+    showLoading(false);
+  }
+}
+
+
+cargarRegalos();
+
+// BOTÓN: Redirigir manteniendo parámetros
+btnRegalos.addEventListener('click', () => {
+  const params = window.location.search;
+  window.location.href = "../index.html" + params;
+});
+</script>
+
+</body>
+</html>

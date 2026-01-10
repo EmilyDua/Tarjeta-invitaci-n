@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Baby Shower Nombre bebe</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Comfortaa:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --rosa: #ffe6f0;
+  --rosa-fuerte: #d63384;
+  --texto: #4a4a4a;
+  --texto-suave: #666;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Comfortaa", sans-serif;
+  background-color: var(--rosa);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+main.card {
+  width: 100%;
+  max-width: min(420px, 90vw);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(214, 51, 132, 0.15);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+  position: relative;
+  z-index: 1; /* Asegura que esté encima de mariposas */
+}
+
+.card img { width: 100%; max-width: 60%; margin: 15px auto 10px; display: block; }
+
+.content { padding: 16px; }
+
+.titulo {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(1.8em, 6vw, 2.5em);
+  color: var(--rosa-fuerte);
+  margin-bottom: 5px;
+}
+
+#nombreInvitado {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(1.5em, 3vw, 2.3em);
+  color: var(--rosa-fuerte);
+  margin: 10px 0 5px 0;
+}
+
+#mensajeInvitado {
+  font-size: clamp(1em, 3vw, 1.1em);
+  color: var(--texto-suave);
+  margin: 10px 0;
+  line-height: 1.5em;
+}
+
+p { font-size: clamp(0.9em, 2.8vw, 1em); color: var(--texto-suave); margin-bottom: 10px; line-height: 1.4em; }
+
+a { color: var(--rosa-fuerte); text-decoration: none; font-weight: 600; }
+
+footer { margin-top: 15px; font-size: clamp(0.8em, 2.5vw, 0.95em); color: var(--rosa-fuerte); }
+
+video { width: 100%; border-radius: 15px; margin-top: 15px; outline: none; aspect-ratio: 16/9; }
+
+.btn-regalos {
+  display: inline-block;
+  background: var(--rosa-fuerte);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  margin-top: 15px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-regalos:hover { background: #b52d70; transform: scale(1.05); }
+
+.butterflies {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2; /* Debajo de la tarjeta */
+}
+
+.butterfly {
+  position: absolute;
+  width: 40px;
+  height: auto;
+  animation: fly 14s linear infinite;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 6px rgba(255, 182, 193, 0.8)) brightness(1.1) saturate(1.2);
+}
+
+@keyframes fly {
+  0% { transform: translateY(100vh) rotate(0deg) scale(1); opacity: 0; }
+  20% { opacity: 1; }
+  50% { transform: translateY(40vh) translateX(25px) rotate(20deg) scale(1.2); }
+  100% { transform: translateY(-10vh) translateX(-30px) rotate(-15deg) scale(1); opacity: 0; }
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 230, 240, 0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Comfortaa", sans-serif;
+  color: var(--rosa-fuerte);
+  z-index: 1000; /* Siempre encima mientras carga */
+}
+
+.spinner { width: 60px; height: 60px; border: 5px solid #f8b7d4; border-top-color: var(--rosa-fuerte); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 15px; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+</style>
+</head>
+<body>
+
+<div class="butterflies">
+  <img src="https://everprieto.github.io/babyshower/mariposa.svg" class="butterfly" style="left:5%; animation-delay:0s;">
+  <img src="https://everprieto.github.io/babyshower/mariposa.svg" class="butterfly" style="left:25%; animation-delay:3s; transform: scaleX(-1);">
+  <img src="https://everprieto.github.io/babyshower/mariposa.svg" class="butterfly" style="left:55%; animation-delay:6s; width:50px;">
+  <img src="https://everprieto.github.io/babyshower/mariposa.svg" class="butterfly" style="left:75%; animation-delay:2s; transform: scaleX(-1);">
+  <img src="https://everprieto.github.io/babyshower/mariposa.svg" class="butterfly" style="left:90%; animation-delay:8s; width:30px;">
+</div>
+
+
+<div id="loading" class="loading-overlay">
+  <div class="spinner"></div>
+  <p>Cargando tu invitación...</p>
+</div>
+
+<main class="card" id="cardContainer" style="display:none;">
+  
+  <div class="content">
+    <div class="titulo">Tenemos el gusto de invitarlos al Baby Shower de nuestra princesa</div>
+    <div class="titulo">💖 Luciana 💖</div>
+<img id="imagenTarjeta" src="https://everprieto.github.io/babyshower/imagen.png" alt="Baby Shower Isabella" />
+    <p>El amor se multiplica y en la familia habrá una sonrisa iluminando nuestras vidas, con amor e ilusión, esperamos su llegada ¡Gracias por ser parte de nuestra alegria!</p>
+
+    <h2 id="nombreInvitado"></h2>
+    <p id="mensajeInvitado"></p>
+
+    <p><strong>📅 Fecha:</strong> 1 - feb - 2026, 2 PM</p>
+    <p><strong>📍 Lugar:</strong>
+      <a href="" target="_blank">
+        Calle 80 bis sur # 91 - 48 Salón comunal conjunto Nogal - parques de Bogotá. 
+      </a>
+    </p>
+
+   
+    <!-- BOTÓN DE REGALOS -->
+    <button class="btn-regalos" id="btnRegalos">🎁 Selecciona tu regalo!</button>
+    <video id="videoInvitacion" controls autoplay loop>
+     <source src="Video.mp4" type="video/mp4">
+     Tu navegador no soporta video HTML5.
+    </video>
+
+    
+ <footer>Con cariño, Sebastian y Adriana 💕🌹</footer>
+<br/><br/>
+  </div>
+</main>
+
+
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const codigo = params.get('codigo');
+const loading = document.getElementById('loading');
+const card = document.getElementById('cardContainer');
+const btnRegalos = document.getElementById('btnRegalos');
+
+if (!codigo) {
+  document.body.innerHTML = "<h2 style='text-align:center;color:#d63384;padding:20px;'>Acceso no autorizado ❌</h2>";
+} else {
+  fetch('./invitados.json')
+    .then(response => {
+      if (!response.ok) throw new Error("No se pudo cargar la lista de invitados");
+      return response.json();
+    })
+    .then(invitados => {
+      const invitado = invitados.find(i => i.codigo === codigo);
+      loading.style.display = 'none';
+      if (invitado) {
+        document.getElementById('nombreInvitado').textContent = `Hola ${invitado.nombre}!`;
+        document.getElementById('mensajeInvitado').textContent = "¡Será una tarde para volar entre risas y emoción.!💕";
+        card.style.display = "block";
+      } else {
+        document.body.innerHTML = "<h2 style='text-align:center;color:#d63384;padding:20px;'>Código inválido ❌</h2>";
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      loading.innerHTML = "<p>Error cargando datos ⚠️</p>";
+    });
+}
+
+// BOTÓN: Redirigir manteniendo parámetros
+btnRegalos.addEventListener('click', () => {
+  const params = window.location.search; // mantiene ?codigo=XXX
+  window.location.href = "regalos/index.html" + params;
+});
+
+</script>
+</body>
+</html>

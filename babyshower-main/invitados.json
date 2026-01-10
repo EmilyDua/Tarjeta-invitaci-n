@@ -1,0 +1,22 @@
+[
+  {
+    "codigo": "ANA01",
+    "nombre": "Ana María"
+  },
+  {
+    "codigo": "CARLOS02",
+    "nombre": "Carlos y Laura"
+  },
+  {
+    "codigo": "MAMA03",
+    "nombre": "Mi querida mamá"
+  },
+  {
+    "codigo": "ABUELOS04",
+    "nombre": "Mis abuelos"
+  },
+  {
+    "codigo": "AMIGAS05",
+    "nombre": "Mis amigas"
+  }
+]

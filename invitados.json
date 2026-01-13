@@ -1,22 +1,50 @@
 [
-  {
-    "codigo": "ANA01",
-    "nombre": "Ana María"
-  },
-  {
-    "codigo": "CARLOS02",
-    "nombre": "Carlos y Laura"
-  },
-  {
-    "codigo": "MAMA03",
-    "nombre": "Mi querida mamá"
-  },
-  {
-    "codigo": "ABUELOS04",
-    "nombre": "Mis abuelos"
-  },
-  {
-    "codigo": "AMIGAS05",
-    "nombre": "Mis amigas"
-  }
+  { "codigo": "COD01", "nombre": "ADELMO VELASCO Y FLIA" },
+  { "codigo": "COD02", "nombre": "JHONATAN CADAVID Y FLIA" },
+  { "codigo": "COD03", "nombre": "YORLADY Y VALERIA" },
+  { "codigo": "COD04", "nombre": "CAMILO Y MICHELLE" },
+  { "codigo": "COD05", "nombre": "OMAR VELASCO Y FLIA" },
+  { "codigo": "COD06", "nombre": "NELSON VELASCO Y OFELIA RONCANCIO" },
+  { "codigo": "COD07", "nombre": "JHOANA ROJAS Y FLIA" },
+  { "codigo": "COD08", "nombre": "GIOVANNY MATEUS" },
+  { "codigo": "COD09", "nombre": "PAOLA BELTRAN Y FLIA" },
+  { "codigo": "COD10", "nombre": "ALEJA Y LUCIANA" },
+  { "codigo": "COD11", "nombre": "KIMBERLY ESPOSO E HIJO" },
+  { "codigo": "COD12", "nombre": "MICHEL E HIJO" },
+  { "codigo": "COD13", "nombre": "MABEL RODRIGUEZ" },
+  { "codigo": "COD14", "nombre": "DAVID VERMUDEZ Y FLIA" },
+  { "codigo": "COD15", "nombre": "ANDRES RUBIANO Y FLIA" },
+  { "codigo": "COD16", "nombre": "CAMILO RAMIREZ Y ESPOSA" },
+  { "codigo": "COD17", "nombre": "OSCAR DÍAZ Y FLIA" },
+  { "codigo": "COD18", "nombre": "SEBASTIAN PRIETO Y ESPOSA" },
+  { "codigo": "COD19", "nombre": "FERNANDO PRIETO Y ESPOSA" },
+  { "codigo": "COD20", "nombre": "JULIAN MONTENEGRO" },
+  { "codigo": "COD21", "nombre": "MAFE ROMERO Y FLIA" },
+  { "codigo": "COD22", "nombre": "DORIS RONCANCIO" },
+  { "codigo": "COD23", "nombre": "ARNULFO OSMA" },
+  { "codigo": "COD24", "nombre": "JILMER CARDENAS Y ESPOSA" },
+  { "codigo": "COD25", "nombre": "FELIPE OCAMPO" },
+  { "codigo": "COD26", "nombre": "ANDERSON HERNANDEZ" },
+  { "codigo": "COD27", "nombre": "CARLOS ROMERO Y FLIA" },
+  { "codigo": "COD28", "nombre": "ADAN HERRERA" },
+  { "codigo": "COD29", "nombre": "ESTEBAN SIERRA" },
+  { "codigo": "COD30", "nombre": "AlBERTO BALLEN" },
+  { "codigo": "COD31", "nombre": "JEAM PIERE Y FLIA" },
+  { "codigo": "COD32", "nombre": "DIEGO, LAURA E HIJAS" },
+  { "codigo": "COD33", "nombre": "EDISON RUBIANO" },
+  { "codigo": "COD34", "nombre": "JHON RUBIANO" },
+  { "codigo": "COD35", "nombre": "ALEJANDO RUBIANO" },
+  { "codigo": "COD36", "nombre": "ANDERSON DURAN Y ESPOSA" },
+  { "codigo": "COD37", "nombre": "JAIRO RUBIANO" },
+  { "codigo": "COD38", "nombre": "CARLOS AREVALO Y ESPOSA" },
+  { "codigo": "COD39", "nombre": "JEISSON MENDEZ Y FLIA" },
+  { "codigo": "COD40", "nombre": "EDISON CASTILLO" },
+  { "codigo": "COD41", "nombre": "GERARDO RONCANCIO Y ESPOSA" },
+  { "codigo": "COD42", "nombre": "CESAR CRUZ Y FLIA" },
+  { "codigo": "COD43", "nombre": "EDUAN RONCANCIO Y FLIA" },
+  { "codigo": "COD44", "nombre": "EDWIN RONCANCIO Y FLIA" },
+  { "codigo": "COD45", "nombre": "GUERLY Y FLIA" },
+  { "codigo": "COD46", "nombre": "MIRIAN" },
+  { "codigo": "COD47", "nombre": "ARMAMDO Y FLIA" }
 ]
+

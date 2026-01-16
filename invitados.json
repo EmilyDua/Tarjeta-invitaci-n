@@ -5,18 +5,14 @@
   { "codigo": "CAMILO_Y_MICHELLE", "nombre": "CAMILO Y MICHELLE" },
   { "codigo": "OMAR_VELASCO_Y_FLIA", "nombre": "OMAR VELASCO Y FLIA" },
   { "codigo": "NELSON_VELASCO_Y_OFELIA_RONCANCIO", "nombre": "NELSON VELASCO Y OFELIA RONCANCIO" },
-
   { "codigo": "JHOANA_ESCAMILLA_Y_FLIA", "nombre": "JHOANA ESCAMILLA Y FLIA" },
-
   { "codigo": "GIOVANNY_MATEUS", "nombre": "GIOVANNY MATEUS" },
   { "codigo": "PAOLA_BELTRAN_Y_FLIA", "nombre": "PAOLA BELTRÁN Y FLIA" },
   { "codigo": "ALEJA_Y_LUCIANA", "nombre": "ALEJA Y LUCIANA" },
   { "codigo": "KIMBERLY_ESPOSO_E_HIJO", "nombre": "KIMBERLY, ESPOSO E HIJO" },
   { "codigo": "MICHEL_E_HIJO", "nombre": "MICHEL E HIJO" },
   { "codigo": "MABEL_RODRIGUEZ", "nombre": "MABEL RODRÍGUEZ" },
-
   { "codigo": "DAVID_BERMUDEZ_Y_FLIA", "nombre": "DAVID BERMUDEZ Y FLIA" },
-
   { "codigo": "ANDRES_RUBIANO_Y_FLIA", "nombre": "ANDRÉS RUBIANO Y FLIA" },
   { "codigo": "CAMILO_RAMIREZ_Y_ESPOSA", "nombre": "CAMILO RAMÍREZ Y ESPOSA" },
   { "codigo": "OSCAR_DIAZ_Y_FLIA", "nombre": "OSCAR DÍAZ Y FLIA" },
@@ -45,14 +41,11 @@
   { "codigo": "EDISON_CASTILLO", "nombre": "EDISON CASTILLO" },
   { "codigo": "GERARDO_RONCANCIO_Y_ESPOSA", "nombre": "GERARDO RONCANCIO Y ESPOSA" },
   { "codigo": "CESAR_CRUZ_Y_FLIA", "nombre": "CÉSAR CRUZ Y FLIA" },
-
   { "codigo": "EDUVAN_RONCANCIO_Y_FLIA", "nombre": "EDUVAN RONCANCIO Y FLIA" },
-
   { "codigo": "EDWIN_RONCANCIO_Y_FLIA", "nombre": "EDWIN RONCANCIO Y FLIA" },
-
   { "codigo": "GERLY_Y_FLIA", "nombre": "GERLY Y FLIA" },
-
   { "codigo": "MIRIAN", "nombre": "MIRIAN" },
-  { "codigo": "ARMANDO_Y_FLIA", "nombre": "ARMANDO Y FLIA" }
+  { "codigo": "ARMANDO_Y_FLIA", "nombre": "ARMANDO Y FLIA" },
+  { "codigo": "ARVEY_CABALLERO", "nombre": "ARVEY CABALLERO Y ESPOSA" }
 ]
 

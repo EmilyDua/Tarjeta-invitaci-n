@@ -71,7 +71,7 @@
   { "codigo": "YAMID_REYES_Y_FML", "nombre": "YAMID REYES Y FML" },
   { "codigo": "MARCOL_REYES_Y_FML", "nombre": "MARCOL REYES Y FML" },
   { "codigo": "EDUARD_JOAQUE_Y_FML", "nombre": "EDUARD JOAQUE Y FML" },
-  { "codigo": "WALTER_Y_FML", "nombre": "WALTER Y FML" },
+  { "codigo": "SANDRA_MORENO_Y_FML", "nombre": "SANDRA MORENO Y FML" },
   { "codigo": "JULIAN_GARZON", "nombre": "JULIAN GARZON" },
   { "codigo": "FELIPE_BEJARANO_Y_FML", "nombre": "FELIPE BEJARANO Y FML" },
   { "codigo": "JOHAN_Y_ESPOSA", "nombre": "JOHAN Y ESPOSA" },
@@ -79,6 +79,7 @@
   { "codigo": "MAURICIO_LOPEZ", "nombre": "MAURICIO LOPEZ" },
   { "codigo": "YOSEF", "nombre": "YOSEF" },
   { "codigo": "JORGE_Y_ESPOSA", "nombre": "JORGE Y ESPOSA" },
+  { "codigo": "WILSON_E_HIJO", "nombre": "WILSON E HIJO" },
   { "codigo": "GERMAN_Y_FAMILIA", "nombre": "GERMAN Y FAMILIA" }
 ]
 

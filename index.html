@@ -2,360 +2,262 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Lista de regalos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Baby Shower Helen</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
+
+
 
 <style>
+:root {
+  --rosa: #ead9e5;
+  --rosa-fuerte: #e03eb5;
+  --texto: #4a4a4a;
+  --texto-suave: #666;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-  font-family: "Segoe UI", sans-serif;
-  background: #f9f4f8;
-  margin: 0;
-  padding: 20px;
-}
-
-h2 {
-  text-align: center;
-  color: #e03eb5;
-}
-
-p {
-  text-align: center;
-  color: #666;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-th, td {
-  padding: 12px;
-  text-align: left;
-}
-
-th {
-  background: #e03eb5;
-  color: white;
-}
-
-tr:nth-child(even) {
-  background: #fafafa;
-}
-
-button {
-  border: none;
-  border-radius: 20px;
-  padding: 6px 12px;
-  cursor: pointer;
-  color: white;
-  font-size: 13px;
-}
-
-.btn-reservar { background: #4caf50; }
-.btn-liberar { background: #f44336; }
-
-.btn-regresar {
-  display: block;
-  margin: 0 auto 15px;
-  background: grey;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-weight: 600;
-}
-
-.btn-regresar:hover {
-  background: #e03eb5;
-}
-
-/* TOAST */
-.toast-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 2000;
-}
-
-.toast {
-  background: #333;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 8px;
-  margin-top: 10px;
-  animation: fade 3s forwards;
-}
-
-.toast.success { background: #4caf50; }
-.toast.error { background: #f44336; }
-
-@keyframes fade {
-  0% {opacity:0;}
-  10% {opacity:1;}
-  90% {opacity:1;}
-  100% {opacity:0;}
-}
-
-/* LOADING */
-#loading-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.8);
-  backdrop-filter: blur(3px);
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  z-index: 1500;
-}
-
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid #ccc;
-  border-top: 4px solid #e03eb5;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* MODAL */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  justify-content: center;
-  align-items: center;
-  z-index: 3000;
-}
-
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  text-align: center;
-  max-width: 300px;
-  width: 90%;
-}
-
-.modal-content h3 {
-  color: #e03eb5;
-}
-
-.modal-buttons {
-  margin-top: 15px;
+  font-family: "Comfortaa", sans-serif;
+  background-color: var(--rosa);
   display: flex;
-  gap: 10px;
   justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  overflow-x: hidden;
 }
 
-.modal-buttons button {
-  padding: 8px 15px;
-  border-radius: 20px;
+main.card {
+  width: 100%;
+  max-width: min(420px, 90vw);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(214, 51, 132, 0.15);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+  position: relative;
+  z-index: 1; /* Asegura que esté encima de mariposas */
 }
 
-.btn-confirmar { background: #4caf50; }
-.btn-cancelar { background: #aaa; }
+.card img { width: 100%; max-width: 60%; margin: 15px auto 10px; display: block; }
+
+.content { padding: 16px; }
+
+.titulo {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(1.8em, 6vw, 2.5em);
+  color: var(--rosa-fuerte);
+  margin-bottom: 5px;
+}
+
+.nombreBebe {
+  font-family: "Great Vibes", cursive;   /* MISMA letra del título */
+  font-size: clamp(2.2em, 6vw, 3em);     /* MÁS GRANDE */
+  color: var(--rosa-fuerte);
+  margin: 12px 0 14px;
+  font-weight: 700;                      /* NEGRILLA */
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+
+#nombreInvitado {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(1.4em, 4.8vw, 2em);
+  color: var(--rosa-fuerte);
+  margin: 14px 12px 10px;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  text-align: center;
+  line-height: 1.3;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+/* Ajuste SOLO para Android */
+@supports not (-webkit-touch-callout: none) {
+  #nombreInvitado {
+    font-size: clamp(1.3em, 4.2vw, 1.85em);
+    letter-spacing: 0.2px;
+    line-height: 1.35;
+  }
+}
+
+#mensajeInvitado {
+  font-size: clamp(1em, 3vw, 1.1em);
+  color: var(--texto-suave);
+  margin: 10px 0;
+  line-height: 1.5em;
+}
+
+p { font-size: clamp(0.9em, 2.8vw, 1em); color: var(--texto-suave); margin-bottom: 10px; line-height: 1.4em; }
+
+a { color: var(--rosa-fuerte); text-decoration: none; font-weight: 600; }
+
+footer { margin-top: 15px; font-size: clamp(0.8em, 2.5vw, 0.95em); color: var(--rosa-fuerte); }
+
+video { width: 100%; border-radius: 15px; margin-top: 15px; outline: none; aspect-ratio: 16/9; }
+
+.btn-regalos {
+  display: inline-block;
+  background: var(--rosa-fuerte);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  margin-top: 15px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-regalos:hover { background: #e03eb5; transform: scale(1.05); }
+
+.butterflies {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2; /* Debajo de la tarjeta */
+}
+
+.butterfly {
+  position: absolute;
+  width: 40px;
+  height: auto;
+  animation: fly 14s linear infinite;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 6px rgba(235, 173, 219, 0.8)) brightness(1.1) saturate(1.2);
+}
+
+@keyframes fly {
+  0% { transform: translateY(100vh) rotate(0deg) scale(1); opacity: 0; }
+  20% { opacity: 1; }
+  50% { transform: translateY(40vh) translateX(25px) rotate(20deg) scale(1.2); }
+  100% { transform: translateY(-10vh) translateX(-30px) rotate(-15deg) scale(1); opacity: 0; }
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(251, 201, 234, 0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Comfortaa", sans-serif;
+  color: var(--rosa-fuerte);
+  z-index: 1000; /* Siempre encima mientras carga */
+}
+
+.spinner { width: 60px; height: 60px; border: 5px solid rgb(249, 172, 219); border-top-color: var(--rosa-fuerte); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 15px; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
 
 </style>
 </head>
 <body>
 
-<button class="btn-regresar" id="btnRegalos">Regresar a invitación</button>
+<div class="butterflies">
+  <img src="https://everprieto.github.io/babyshower/mariposa.svg" class="butterfly" style="left:5%; animation-delay:0s;">
+  <img src="https://everprieto.github.io/babyshower/mariposa.svg" class="butterfly" style="left:25%; animation-delay:3s; transform: scaleX(-1);">
+  <img src="https://everprieto.github.io/babyshower/mariposa.svg" class="butterfly" style="left:55%; animation-delay:6s; width:50px;">
+  <img src="https://everprieto.github.io/babyshower/mariposa.svg" class="butterfly" style="left:75%; animation-delay:2s; transform: scaleX(-1);">
+  <img src="https://everprieto.github.io/babyshower/mariposa.svg" class="butterfly" style="left:90%; animation-delay:8s; width:30px;">
+</div>
 
-<h2>🎁 Lista de regalos</h2>
-<p>Elige un regalo con amor 💖</p>
 
-<div id="loading-overlay">
+<div id="loading" class="loading-overlay">
   <div class="spinner"></div>
-  <p>Procesando...</p>
+  <p>Cargando tu invitación...</p>
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Regalo</th>
-      <th>Estado</th>
-      <th>Acción</th>
-    </tr>
-  </thead>
-  <tbody id="tabla"></tbody>
-</table>
+<main class="card" id="cardContainer" style="display:none;">
 
-<div class="toast-container" id="toast"></div>
+  <h2 id="nombreInvitado"></h2>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <h3 id="modalText"></h3>
-    <div class="modal-buttons">
-      <button class="btn-confirmar" id="confirmBtn">Sí</button>
-      <button class="btn-cancelar" id="cancelBtn">Cancelar</button>
-    </div>
+<img id="imagenTarjeta"
+     src="img/portada.png"
+     alt="Invitación Baby Shower" />  
+  
+  <div class="content">
+    <div class="titulo">Tenemos el gusto de invitarlos al Baby Shower de nuestra princesa</div>
+    <div class="nombreBebe">♡ Helen ♡</div>
+
+    
+
+    <video id="videoInvitacion" controls autoplay loop>
+     <source src="Video.mp4" type="video/mp4">
+     Tu navegador no soporta video HTML5.
+    </video>
+
+    <p id="mensajeInvitado"></p>
+
+    <p><strong>📅 Fecha:</strong> 19/Abril/2026</p>
+    <p><strong>⏱️ Hora:</strong> 2:00 p.m. </p>
+    <p><strong>📍 Lugar:</strong>
+      <a href="" target="_blank">
+        Recepción finca Jhonson 
+      </a>
+    </p>
+
+    <!-- BOTÓN DE REGALOS -->
+    <button class="btn-regalos" id="btnRegalos">🎁 Selecciona tu regalo!</button>
+
+    
+ <footer>Con cariño, Sebastian y Tatiana 💕</footer>
+<br/><br/>
   </div>
-</div>
+</main>
+
+
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbziW4ugHNR0q8w_LCev5dSkr3jJZCraREQGc0RC_xCaEtfgi8URvq1nnvwt-gSmDeS7/exec";
-
-const tabla = document.getElementById("tabla");
-const toast = document.getElementById("toast");
-const loading = document.getElementById("loading-overlay");
-
-const modal = document.getElementById("modal");
-const modalText = document.getElementById("modalText");
-const confirmBtn = document.getElementById("confirmBtn");
-const cancelBtn = document.getElementById("cancelBtn");
-
 const params = new URLSearchParams(window.location.search);
-const codigo = (params.get("codigo") || "").trim().toUpperCase();
+const codigo = params.get('codigo');
+const loading = document.getElementById('loading');
+const card = document.getElementById('cardContainer');
+const btnRegalos = document.getElementById('btnRegalos');
 
-/* VALIDACIÓN */
 if (!codigo) {
-  alert("Acceso no válido ❌");
-  window.location.href = "../index.html";
-}
-
-/* TOAST */
-function showToast(msg, type="") {
-  const div = document.createElement("div");
-  div.className = "toast " + type;
-  div.textContent = msg;
-  toast.appendChild(div);
-  setTimeout(()=>div.remove(),3000);
-}
-
-/* LOADING */
-function showLoading(show){
-  loading.style.display = show ? "flex" : "none";
-}
-
-/* MODAL */
-function openModal(text, onConfirm){
-  modalText.textContent = text;
-  modal.style.display = "flex";
-
-  confirmBtn.onclick = () => {
-    modal.style.display = "none";
-    onConfirm();
-  };
-
-  cancelBtn.onclick = () => {
-    modal.style.display = "none";
-  };
-}
-
-/* CARGAR */
-async function cargar(){
-  showLoading(true);
-  const res = await fetch(API_URL);
-  const data = await res.json();
-  render(data);
-  showLoading(false);
-}
-
-/* RENDER */
-function render(data){
-  tabla.innerHTML = "";
-
-  data.forEach(r=>{
-    const reservado = r.estado !== "Disponible";
-    const esMio =
-      (r.reservadoPor || "").trim().toUpperCase() === codigo;
-
-    const tr = document.createElement("tr");
-
-    tr.innerHTML = `
-      <td>${r.regalo}</td>
-      <td>${reservado ? "🎁 Seleccionado" : "Disponible"}</td>
-      <td>
-        ${
-          !reservado
-          ? `<button class="btn-reservar" onclick="reservar(${r.id})">Elegir</button>`
-          : esMio
-            ? `<button class="btn-liberar" onclick="liberar(${r.id})">Quitar selección</button>`
-            : `<span style="color:gray;">Ocupado</span>`
-        }
-      </td>
-    `;
-
-    tabla.appendChild(tr);
-  });
-}
-
-/* RESERVAR */
-function reservar(id){
-  fetch(API_URL)
-  .then(r=>r.json())
-  .then(data=>{
-    const regalo = data.find(r=>r.id==id);
-
-    if (regalo.estado !== "Disponible") {
-      showToast("Este regalo ya fue elegido","error");
-      return;
-    }
-
-    openModal(`¿Quieres elegir "${regalo.regalo}"?`, async ()=>{
-      showLoading(true);
-
-      await fetch(API_URL,{
-        method:"POST",
-        body: JSON.stringify({
-          id,
-          estado:"Tomado",
-          reservadoPor: codigo
-        })
-      });
-
-      showToast("Regalo seleccionado 💖","success");
-      cargar();
+  document.body.innerHTML = "<h2 style='text-align:center;color:#d63384;padding:20px;'>Acceso no autorizado ❌</h2>";
+} else {
+  fetch('./invitados.json')
+    .then(response => {
+      if (!response.ok) throw new Error("No se pudo cargar la lista de invitados");
+      return response.json();
+    })
+    .then(invitados => {
+      const invitado = invitados.find(i => i.codigo === codigo);
+      loading.style.display = 'none';
+      if (invitado) {
+        document.getElementById('nombreInvitado').textContent = invitado.nombre;
+        card.style.display = "block";
+      } else {
+        document.body.innerHTML = "<h2 style='text-align:center;color:#d63384;padding:20px;'>Código inválido ❌</h2>";
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      loading.innerHTML = "<p>Error cargando datos ⚠️</p>";
     });
-  });
 }
 
-/* LIBERAR */
-function liberar(id){
-  fetch(API_URL)
-  .then(r=>r.json())
-  .then(data=>{
-    const regalo = data.find(r=>r.id==id);
+// BOTÓN: Redirigir manteniendo parámetros
+btnRegalos.addEventListener('click', () => {
+  const params = window.location.search; // mantiene ?codigo=XXX
+  window.location.href = "regalos/index.html" + params;
+});
 
-    if ((regalo.reservadoPor || "").trim().toUpperCase() !== codigo) {
-      showToast("No puedes liberar este regalo","error");
-      return;
-    }
-
-    openModal(`¿Deseas liberar "${regalo.regalo}"?`, async ()=>{
-      showLoading(true);
-
-      await fetch(API_URL,{
-        method:"POST",
-        body: JSON.stringify({
-          id,
-          estado:"Disponible",
-          reservadoPor:""
-        })
-      });
-
-      showToast("Regalo liberado 💔","success");
-      cargar();
-    });
-  });
-}
-
-/* VOLVER */
-document.getElementById("btnRegalos").onclick = ()=>{
-  window.location.href = "../index.html" + window.location.search;
-};
-
-cargar();
 </script>
-
 </body>
 </html>

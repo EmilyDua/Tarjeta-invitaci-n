@@ -214,8 +214,6 @@ const confirmBtn = document.getElementById("confirmBtn");
 const cancelBtn = document.getElementById("cancelBtn");
 
 const params = new URLSearchParams(window.location.search);
-
-// 🔥 NORMALIZACIÓN GLOBAL (CLAVE)
 const codigo = (params.get("codigo") || "").trim().toUpperCase();
 
 /* VALIDACIÓN */
@@ -255,16 +253,11 @@ function openModal(text, onConfirm){
 
 /* CARGAR */
 async function cargar(){
-  try {
-    showLoading(true);
-    const res = await fetch(API_URL);
-    const data = await res.json();
-    render(data);
-  } catch {
-    showToast("Error cargando datos","error");
-  } finally {
-    showLoading(false);
-  }
+  showLoading(true);
+  const res = await fetch(API_URL);
+  const data = await res.json();
+  render(data);
+  showLoading(false);
 }
 
 /* RENDER */
@@ -273,10 +266,8 @@ function render(data){
 
   data.forEach(r=>{
     const reservado = r.estado !== "Disponible";
-
-    const reservadoPor = (r.reservadoPor || "").trim().toUpperCase();
-
-    const esMio = reservadoPor === codigo;
+    const esMio =
+      (r.reservadoPor || "").trim().toUpperCase() === codigo;
 
     const tr = document.createElement("tr");
 
@@ -305,11 +296,6 @@ function reservar(id){
   .then(data=>{
     const regalo = data.find(r=>r.id==id);
 
-    if (!regalo) {
-      showToast("Regalo no encontrado","error");
-      return;
-    }
-
     if (regalo.estado !== "Disponible") {
       showToast("Este regalo ya fue elegido","error");
       return;
@@ -318,21 +304,17 @@ function reservar(id){
     openModal(`¿Quieres elegir "${regalo.regalo}"?`, async ()=>{
       showLoading(true);
 
-      try {
-        await fetch(API_URL,{
-          method:"POST",
-          body: JSON.stringify({
-            id,
-            estado:"Tomado",
-            reservadoPor: codigo
-          })
-        });
+      await fetch(API_URL,{
+        method:"POST",
+        body: JSON.stringify({
+          id,
+          estado:"Tomado",
+          reservadoPor: codigo
+        })
+      });
 
-        showToast("Regalo seleccionado 💖","success");
-        cargar();
-      } catch {
-        showToast("Error al seleccionar","error");
-      }
+      showToast("Regalo seleccionado 💖","success");
+      cargar();
     });
   });
 }
@@ -344,14 +326,7 @@ function liberar(id){
   .then(data=>{
     const regalo = data.find(r=>r.id==id);
 
-    if (!regalo) {
-      showToast("Regalo no encontrado","error");
-      return;
-    }
-
-    const reservadoPor = (regalo.reservadoPor || "").trim().toUpperCase();
-
-    if (reservadoPor !== codigo) {
+    if ((regalo.reservadoPor || "").trim().toUpperCase() !== codigo) {
       showToast("No puedes liberar este regalo","error");
       return;
     }
@@ -359,21 +334,17 @@ function liberar(id){
     openModal(`¿Deseas liberar "${regalo.regalo}"?`, async ()=>{
       showLoading(true);
 
-      try {
-        await fetch(API_URL,{
-          method:"POST",
-          body: JSON.stringify({
-            id,
-            estado:"Disponible",
-            reservadoPor:""
-          })
-        });
+      await fetch(API_URL,{
+        method:"POST",
+        body: JSON.stringify({
+          id,
+          estado:"Disponible",
+          reservadoPor:""
+        })
+      });
 
-        showToast("Regalo liberado","success");
-        cargar();
-      } catch {
-        showToast("Error al liberar","error");
-      }
+      showToast("Regalo liberado 💔","success");
+      cargar();
     });
   });
 }

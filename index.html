@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Baby Shower Luciana</title>
+<title>Baby Shower Helen</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
 
@@ -11,8 +11,8 @@
 
 <style>
 :root {
-  --rosa: #f2d7f2;
-  --rosa-fuerte: #75307e;
+  --rosa: #ead9e5;
+  --rosa-fuerte: #e03eb5;
   --texto: #4a4a4a;
   --texto-suave: #666;
 }
@@ -116,7 +116,7 @@ video { width: 100%; border-radius: 15px; margin-top: 15px; outline: none; aspec
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.btn-regalos:hover { background: #75307e; transform: scale(1.05); }
+.btn-regalos:hover { background: #e03eb5; transform: scale(1.05); }
 
 .butterflies {
   position: fixed;
@@ -134,7 +134,7 @@ video { width: 100%; border-radius: 15px; margin-top: 15px; outline: none; aspec
   height: auto;
   animation: fly 14s linear infinite;
   opacity: 0.8;
-  filter: drop-shadow(0 0 6px rgba(228, 173, 235, 0.8)) brightness(1.1) saturate(1.2);
+  filter: drop-shadow(0 0 6px rgba(235, 173, 219, 0.8)) brightness(1.1) saturate(1.2);
 }
 
 @keyframes fly {
@@ -149,7 +149,7 @@ video { width: 100%; border-radius: 15px; margin-top: 15px; outline: none; aspec
 .loading-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(248, 205, 245, 0.95);
+  background: rgba(251, 201, 234, 0.95);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -159,7 +159,7 @@ video { width: 100%; border-radius: 15px; margin-top: 15px; outline: none; aspec
   z-index: 1000; /* Siempre encima mientras carga */
 }
 
-.spinner { width: 60px; height: 60px; border: 5px solid #f5b7f8; border-top-color: var(--rosa-fuerte); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 15px; }
+.spinner { width: 60px; height: 60px; border: 5px solid rgb(249, 172, 219); border-top-color: var(--rosa-fuerte); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 15px; }
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -168,11 +168,11 @@ video { width: 100%; border-radius: 15px; margin-top: 15px; outline: none; aspec
 <body>
 
 <div class="butterflies">
-  <img src="https://everprieto.github.io/babyshower/mariposa.svg" class="butterfly" style="left:5%; animation-delay:0s;">
-  <img src="https://everprieto.github.io/babyshower/mariposa.svg" class="butterfly" style="left:25%; animation-delay:3s; transform: scaleX(-1);">
-  <img src="https://everprieto.github.io/babyshower/mariposa.svg" class="butterfly" style="left:55%; animation-delay:6s; width:50px;">
-  <img src="https://everprieto.github.io/babyshower/mariposa.svg" class="butterfly" style="left:75%; animation-delay:2s; transform: scaleX(-1);">
-  <img src="https://everprieto.github.io/babyshower/mariposa.svg" class="butterfly" style="left:90%; animation-delay:8s; width:30px;">
+  <img src="img/flor.PNG" class="butterfly" style="left:5%; animation-delay:0s;">
+  <img src="img/flor.PNG" class="butterfly" style="left:25%; animation-delay:3s;">
+  <img src="img/flor.PNG" class="butterfly" style="left:55%; animation-delay:6s;">
+  <img src="img/flor.PNG" class="butterfly" style="left:75%; animation-delay:2s;">
+  <img src="img/flor.PNG" class="butterfly" style="left:90%; animation-delay:8s;">
 </div>
 
 
@@ -186,12 +186,12 @@ video { width: 100%; border-radius: 15px; margin-top: 15px; outline: none; aspec
   <h2 id="nombreInvitado"></h2>
 
 <img id="imagenTarjeta"
-     src="img/portada.jpg"
+     src="img/portada.png"
      alt="Invitación Baby Shower" />  
   
   <div class="content">
     <div class="titulo">Tenemos el gusto de invitarlos al Baby Shower de nuestra princesa</div>
-    <div class="nombreBebe">🎀 Luciana 🎀</div>
+    <div class="nombreBebe">♡ Helen ♡</div>
 
     
 
@@ -202,11 +202,11 @@ video { width: 100%; border-radius: 15px; margin-top: 15px; outline: none; aspec
 
     <p id="mensajeInvitado"></p>
 
-    <p><strong>📅 Fecha:</strong> 1/feb/2026</p>
+    <p><strong>📅 Fecha:</strong> 19/Marzo/2026</p>
     <p><strong>⏱️ Hora:</strong> 2:00 p.m. </p>
     <p><strong>📍 Lugar:</strong>
       <a href="" target="_blank">
-        Calle 80 bis sur # 91 - 48 Salón comunal conjunto Nogal - parques de Bogotá. 
+        Recepción finca Jhonson 
       </a>
     </p>
 
@@ -214,7 +214,7 @@ video { width: 100%; border-radius: 15px; margin-top: 15px; outline: none; aspec
     <button class="btn-regalos" id="btnRegalos">🎁 Selecciona tu regalo!</button>
 
     
- <footer>Con cariño, Sebastian y Adriana 💕</footer>
+ <footer>Con cariño, Sebastian y Tatiana 💕</footer>
 <br/><br/>
   </div>
 </main>

@@ -124,7 +124,7 @@ button {
   to { transform: rotate(360deg); }
 }
 
-/* MODAL BONITO */
+/* MODAL */
 .modal {
   display: none;
   position: fixed;
@@ -216,6 +216,12 @@ const cancelBtn = document.getElementById("cancelBtn");
 const params = new URLSearchParams(window.location.search);
 const codigo = params.get("codigo");
 
+/* VALIDACIÓN */
+if (!codigo) {
+  alert("Acceso no válido ❌");
+  window.location.href = "../index.html";
+}
+
 /* TOAST */
 function showToast(msg, type="") {
   const div = document.createElement("div");
@@ -260,7 +266,7 @@ function render(data){
 
   data.forEach(r=>{
     const reservado = r.estado !== "Disponible";
-    const esMio = r.reservadoPor === codigo;
+    const esMio = (r.reservadoPor || "").trim().toUpperCase() === codigo.trim().toUpperCase();
 
     const tr = document.createElement("tr");
 
@@ -272,7 +278,7 @@ function render(data){
           !reservado
           ? `<button class="btn-reservar" onclick="reservar(${r.id})">Elegir</button>`
           : esMio
-            ? `<button class="btn-liberar" onclick="liberar(${r.id})">Liberar</button>`
+            ? `<button class="btn-liberar" onclick="liberar(${r.id})">Quitar selección</button>`
             : `<span style="color:gray;">Ocupado</span>`
         }
       </td>
@@ -288,6 +294,11 @@ function reservar(id){
   .then(r=>r.json())
   .then(data=>{
     const regalo = data.find(r=>r.id==id);
+
+    if (regalo.estado !== "Disponible") {
+      showToast("Este regalo ya fue elegido","error");
+      return;
+    }
 
     openModal(`¿Quieres elegir "${regalo.regalo}"?`, async ()=>{
       showLoading(true);
@@ -314,7 +325,7 @@ function liberar(id){
   .then(data=>{
     const regalo = data.find(r=>r.id==id);
 
-    if(regalo.reservadoPor !== codigo){
+    if ((regalo.reservadoPor || "").trim().toUpperCase() !== codigo.trim().toUpperCase()) {
       showToast("No puedes liberar este regalo","error");
       return;
     }
@@ -337,7 +348,7 @@ function liberar(id){
   });
 }
 
-/* BOTÓN VOLVER */
+/* VOLVER */
 document.getElementById("btnRegalos").onclick = ()=>{
   window.location.href = "../index.html" + window.location.search;
 };
